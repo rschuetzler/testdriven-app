@@ -5,12 +5,12 @@ from flask_sqlalchemy import SQLAlchemy
 # start the app
 app = Flask(__name__)
 
-
 # set config
 app_settings = os.getenv('APP_SETTINGS')
 app.config.from_object(app_settings)
 
 db = SQLAlchemy(app)
+
 
 # Set up models
 class User(db.Model):
@@ -23,7 +23,6 @@ class User(db.Model):
     def __init__(self, username, email):
         self.username = username
         self.email = email
-
 
 
 @app.route('/users/ping', methods=['GET'])
