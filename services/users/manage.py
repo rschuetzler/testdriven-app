@@ -1,10 +1,10 @@
 from flask.cli import FlaskGroup
 
-from project import app, db
+from project import create_app, db
 import unittest
 
-
-cli = FlaskGroup(app)
+app = create_app()
+cli = FlaskGroup(create_app=create_app)
 
 
 @cli.command()
