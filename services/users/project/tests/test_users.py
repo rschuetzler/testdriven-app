@@ -29,7 +29,7 @@ class TestUserService(BaseTestCase):
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 201)
             self.assertIn('ryan@example.com was added!', data['message'])
-            self.assertIn('success', data['success'])
+            self.assertIn('success', data['status'])
 
 
 if __name__ == '__main__':
