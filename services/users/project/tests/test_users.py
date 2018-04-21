@@ -49,12 +49,18 @@ class TestUserService(BaseTestCase):
     def test_add_user_duplicate_email(self):
         """Ensure error is thrown if the email already exists"""
         with self.client:
+            user = {
+                'username': 'ryan',
+                'email': 'ryan@example.com'
+            }
+            self.client.post(
+                '/users',
+                data=json.dumps(user),
+                content_type='application/json',
+                )
             response = self.client.post(
                 '/users',
-                data=json.dumps({
-                    'username': 'ryan',
-                    'email': 'ryan@example.com'
-                }),
+                data=json.dumps(user),
                 content_type='application/json',
                 )
             data = json.loads(response.data.decode())
