@@ -1,6 +1,8 @@
 import json
 import unittest
 
+from project import db
+from project.api.models import User
 from project.tests.base import BaseTestCase
 
 
@@ -49,24 +51,34 @@ class TestUserService(BaseTestCase):
     def test_add_user_duplicate_email(self):
         """Ensure error is thrown if the email already exists"""
         with self.client:
-            user = {
-                'username': 'ryan',
-                'email': 'ryan@example.com'
-            }
+            user = {'username': 'ryan', 'email': 'ryan@example.com'}
             self.client.post(
                 '/users',
                 data=json.dumps(user),
                 content_type='application/json',
-                )
+            )
             response = self.client.post(
                 '/users',
                 data=json.dumps(user),
                 content_type='application/json',
-                )
+            )
             data = json.loads(response.data.decode())
             self.assertEqual(response.status_code, 400)
             self.assertIn('email already exists', data['message'])
             self.assertIn('fail', data['status'])
+
+    def test_single_user(self):
+        """Ensure getting a single user behaves correctly."""
+        user = User(username='ryan', email='ryan@example.com')
+        db.session.add(user)
+        db.session.commit()
+        with self.client:
+            response = self.client.get(f'/users/{user.id}')
+            data = json.loads(response.data.decode())
+            self.assert200(response)
+            self.assertIn('ryan', data['data']['username'])
+            self.assertIn('ryan@example.com', data['data']['email'])
+            self.assertIn('success', data['status'])
 
 
 if __name__ == '__main__':
