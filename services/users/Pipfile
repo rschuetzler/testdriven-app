@@ -11,8 +11,8 @@ flask-testing = "*"
 
 [dev-packages]
 pylint = "*"
-yapf = "*"
 "flake8" = "*"
+black = "*"
 
 [requires]
 python_version = "3.6"
