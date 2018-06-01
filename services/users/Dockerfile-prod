@@ -1,0 +1,22 @@
+FROM python:3.6
+
+# install dependencies
+RUN apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
+    netcat \
+    && apt-get -q clean
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Get that sweet pipenv action
+RUN pip install pipenv
+COPY Pipfile /usr/src/app/Pipfile
+COPY Pipfile.lock /usr/src/app/Pipfile.lock
+RUN pipenv install --system
+
+COPY ./entrypoint-prod.sh /usr/src/app/entrypoint-prod.sh
+
+COPY . /usr/src/app
+
+CMD ["./entrypoint-prod.sh"]
