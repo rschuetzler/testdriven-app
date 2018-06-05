@@ -119,6 +119,12 @@ class TestUserService(BaseTestCase):
                           data['data']['users'][1]['email'])
             self.assertIn('success', data['status'])
 
+    def test_main_no_users(self):
+        """Ensure the main route works with no users in DB"""
+        response = self.client.get('/')
+        self.assert200(response)
+        self.assertIn(b'<h1>All Users</h1>', response.data)
+        self.assertIn(b'<p>No users!</p>', response.data)
 
 if __name__ == '__main__':
     unittest.main()
