@@ -10,6 +10,7 @@ flask-sqlalchemy = "*"
 flask-testing = "*"
 gunicorn = "*"
 coverage = "*"
+flask-debugtoolbar = "*"
 
 [dev-packages]
 pylint = "*"
