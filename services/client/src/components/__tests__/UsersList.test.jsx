@@ -30,4 +30,4 @@ test('UsersList renders properly', () => {
 test('UsersList renders a snapshot properly', () => {
     const tree = renderer.create(<UsersList users={users} />).toJSON();
     expect(tree).toMatchSnapshot();
-})
+});
