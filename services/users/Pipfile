@@ -11,6 +11,7 @@ flask-testing = "*"
 gunicorn = "*"
 coverage = "*"
 flask-debugtoolbar = "*"
+flask-cors = "*"
 
 [dev-packages]
 pylint = "*"
