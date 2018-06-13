@@ -35,8 +35,12 @@ def test():
 def seed_db():
     """Seeds the database
     """
-    db.session.add(User(username="Ryan", email="ryan@example.com"))
-    db.session.add(User(username="Mike", email="mike@goober.net"))
+    db.session.add(
+        User(username="Ryan", email="ryan@example.com", password="reallygoodpassword")
+    )
+    db.session.add(
+        User(username="Mike", email="mike@goober.net", password="reallygoodpassword")
+    )
     db.session.commit()
 
 
