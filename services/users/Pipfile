@@ -12,6 +12,7 @@ gunicorn = "*"
 coverage = "*"
 flask-debugtoolbar = "*"
 flask-cors = "*"
+flask-migrate = "*"
 
 [dev-packages]
 pylint = "*"
