@@ -13,6 +13,7 @@ coverage = "*"
 flask-debugtoolbar = "*"
 flask-cors = "*"
 flask-migrate = "*"
+"flask-argon2" = "*"
 
 [dev-packages]
 pylint = "*"
