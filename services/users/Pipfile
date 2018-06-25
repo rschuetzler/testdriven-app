@@ -14,6 +14,7 @@ flask-debugtoolbar = "*"
 flask-cors = "*"
 flask-migrate = "*"
 flask-bcrypt = "*"
+pyjwt = "*"
 
 [dev-packages]
 pylint = "*"
