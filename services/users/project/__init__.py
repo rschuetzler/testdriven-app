@@ -28,9 +28,11 @@ def create_app(script_info=None):
     migrate.init_app(app, db)
     bcrypt.init_app(app)
 
+    # Register blueprints
     from project.api.users import users_blueprint
-
     app.register_blueprint(users_blueprint)
+    from project.api.auth import auth_blueprint
+    app.register_blueprint(auth_blueprint)
 
     # Shell context for flask CLI
     app.shell_context_processor({"app": app, "db": db})
